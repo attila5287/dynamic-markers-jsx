@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "./App.css";
+import Marker from "./components/Marker";
 
 function Map() {
   const mapRef = useRef();
@@ -27,11 +28,11 @@ function Map() {
       "pk.eyJ1IjoiYXR0aWxhNTIiLCJhIjoiY2thOTE3N3l0MDZmczJxcjl6dzZoNDJsbiJ9.bzXjw1xzQcsIhjB_YoAuEw";
     mapRef.current = new mapboxgl.Map({
       container: mapContainerRef.current,
-      style: "mapbox://styles/mapbox/satellite-v9",
-      center: [37.04957, 37.03501], //maras 02-06-2023
-      zoom: 5.75,
-      minZoom: 5.75,
-      maxZoom: 5.75,
+      style: "mapbox://styles/mapbox/streets-v12",
+      center: [36.9, 37.66], //maras 02-06-2023
+      zoom: 7.15,
+      minZoom: 5.5,
+      maxZoom: 9.5,
     });
     mapRef.current.on('load', () => {
         getBboxAndFetch()
@@ -45,11 +46,18 @@ function Map() {
     
   }, [] );
   
-  console.log(...earthquakeData.features);
+  // console.log(...earthquakeData.features);
   
   return (
     <>
-      <div id="map-container" ref={mapContainerRef} />
+      <div id="map-container" ref={mapContainerRef} />{" "}
+      {mapRef.current &&
+        earthquakeData &&
+        earthquakeData.features?.map((feature) => {
+          return (
+            <Marker key={feature.id} map={mapRef.current} feature={feature} />
+          );
+        })}
     </>
   );
 }

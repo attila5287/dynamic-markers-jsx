@@ -14,28 +14,23 @@ export default function Navbar() {
         zIndex: 1000,
       }}
     >
-      <img
-        src={logo}
-        alt="React Logo"
-        style={{ height: "30px", marginRight: "16px", animation: "spin 2s linear infinite" }}
-      />
       <a
         className="navbar-link"
-        href="https://github.com/attila5287/dynamic-markers-jsx"
+        href="https://docs.mapbox.com/help/tutorials/dynamic-markers-react/?step=3"
         target="_blank"
         rel="noopener noreferrer"
         style={{ textDecoration: "none" }}
       >
-        <i className="fab fa-github mx-2"></i>Github
-      </a>
-      <a
-        className="navbar-link"
-        href="https://dynamic-markers-jsx.vercel.app/"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{ textDecoration: "none" }}
-      >
-        <i className="fas fa-globe mx-2"></i>Vercel
+        <img
+          src={logo}
+          alt="React Logo"
+          style={{
+            height: "30px",
+            marginRight: "16px",
+            animation: "spin 2s linear infinite",
+          }}
+        />
+        Tutorial
       </a>
       <a
         className="navbar-link"
@@ -44,7 +39,16 @@ export default function Navbar() {
         rel="noopener noreferrer"
         style={{ textDecoration: "none" }}
       >
-        <i className="fab fa-react mx-2"></i> Tutorial
+        <i className="fab fa-github mx-2"></i>Github
+      </a>
+      <a
+        className="navbar-link mx-4"
+        href="https://dynamic-markers-jsx.vercel.app/"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ textDecoration: "none" }}
+      >
+        <i className="fas fa-globe mx-2"></i>Vercel
       </a>
     </nav>
   );
