@@ -1,12 +1,17 @@
-# React + Vite
+# Earthquakes (Kahramanmaras February, 05-06, 2023)
+> mapbox tutorial to fetch earthquakes json data
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+| desc | link |
+|-- | -- |
+|see live on vercel | [link1] |
+|code repo github   | [link2] |
+|mapbox tutorial    | [link3] |
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[link1]:https://dynamic-markers-jsx.vercel.app/
+[link2]:https://github.com/attila5287/dynamic-markers-jsx
+[link3]:https://docs.mapbox.com/help/tutorials/dynamic-markers-react/?step=1
 
-## Expanding the ESLint configuration
+![react-badge](https://raw.githubusercontent.com/attila5287/img_readme/refs/heads/main/new/react_badge_96.png)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+![screenshot](./public/images/image1.jpg)
