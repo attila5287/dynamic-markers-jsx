@@ -3,15 +3,18 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "./App.css";
 import Marker from "./components/Marker";
+import Popup from "./components/Popup";
 
 function Map() {
   const mapRef = useRef();
   const mapContainerRef = useRef();
   const [earthquakeData, setEarthquakeData] = useState();
+  const [activeFeature, setActiveFeature] = useState();
 
-  const getBboxAndFetch = useCallback(async () => {
+
+  const getBboxAndFetch = useCallback( async () => {
     const bounds = mapRef.current.getBounds();
-    console.log(bounds)
+    console.log(bounds);
     try {
       const data = await fetch(
         `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2023-02-05&endtime=2023-02-07&minlatitude=${bounds._sw.lat}&maxlatitude=${bounds._ne.lat}&minlongitude=${bounds._sw.lng}&maxlongitude=${bounds._ne.lng}&minmagnitude=5.0`
@@ -22,7 +25,7 @@ function Map() {
       console.error(error);
     }
   }, []);
-  
+
   useEffect(() => {
     mapboxgl.accessToken =
       "pk.eyJ1IjoiYXR0aWxhNTIiLCJhIjoiY2thOTE3N3l0MDZmczJxcjl6dzZoNDJsbiJ9.bzXjw1xzQcsIhjB_YoAuEw";
@@ -34,20 +37,22 @@ function Map() {
       minZoom: 5.5,
       maxZoom: 9.5,
     });
-    mapRef.current.on('load', () => {
-        getBboxAndFetch()
-    })
-    mapRef.current.on('moveend', () => {
-        getBboxAndFetch()
-    })
+    mapRef.current.on("load", () => {
+      getBboxAndFetch();
+    });
+    mapRef.current.on("moveend", () => {
+      getBboxAndFetch();
+    });
     return () => {
       mapRef.current.remove();
     };
-    
-  }, [] );
-  
+  }, []);
+
   // console.log(...earthquakeData.features);
-  
+  const handleMarkerClick = (feature) => {
+    setActiveFeature( feature );
+    console.log("Magnitude: " + feature.properties.mag + " Time: " + new Date(feature.properties.time).toLocaleString());     
+  };
   return (
     <>
       <div id="map-container" ref={mapContainerRef} />{" "}
@@ -55,9 +60,16 @@ function Map() {
         earthquakeData &&
         earthquakeData.features?.map((feature) => {
           return (
-            <Marker key={feature.id} map={mapRef.current} feature={feature} />
+            <Marker
+              key={feature.id}
+              map={mapRef.current}
+              feature={feature}
+              isActive={activeFeature?.id === feature.id}
+              handleMarkerClick={handleMarkerClick}
+            />
           );
         })}
+      {activeFeature && <Popup map={mapRef.current} activeFeature={activeFeature} />}
     </>
   );
 }

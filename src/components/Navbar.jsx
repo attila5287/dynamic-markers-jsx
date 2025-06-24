@@ -50,6 +50,15 @@ export default function Navbar() {
       >
         <i className="fas fa-globe mx-2"></i>Vercel
       </a>
+      <a
+        className="navbar-link mx-4"
+        href="https://en.wikipedia.org/wiki/2023_Turkey%E2%80%93Syria_earthquakes"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ textDecoration: "none" }}
+      >
+        <i className="fab fa-wikipedia-w mx-2"></i>Wiki
+      </a>
     </nav>
   );
 }
