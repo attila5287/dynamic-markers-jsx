@@ -21,7 +21,7 @@ const Marker = ({ map, feature }) => {
   const magObject = {
     "mag7": "bg-danger",
     "mag6": "bg-warning",
-    "mag5": "bg-success",
+    "mag5": "bg-primary",
   };
   return (
     <>
